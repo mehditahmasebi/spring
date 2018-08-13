@@ -6,5 +6,6 @@ pom--> packaging=war
 	mvnw clean package -P wildfly
 	mvnw clean package
 	
+test is disable
 for skiping test add : -DskipTests
 skiptests embedded in pom.xml at maven-surefire-plugin
