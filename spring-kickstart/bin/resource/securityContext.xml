@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security-4.2.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<authentication-manager>
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
+	
+	<global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
+
+<!-- 	<http pattern="/**" security="none"/> -->
+	<beans:bean id="myFilter" class="org.tahmasebi.service.XSSFilter"/>
+	<http use-expressions="true">
+		<cors/>
+		<custom-filter after="BASIC_AUTH_FILTER" ref="myFilter" />
+		<form-login always-use-default-target="false" login-page="/403.jsp" />
+		<intercept-url pattern="/public/**" 				access="permitAll" />
+		<intercept-url pattern="/403.jsp" 					access="permitAll" />
+		<intercept-url pattern="/serviceAccessDenied.htm" 	access="permitAll" />
+		<intercept-url pattern="/serviceNotFound.htm" 		access="permitAll" />
+		<intercept-url pattern="/**" 						access="hasRole('ROLE_USER')" />
+		<csrf disabled="true" />		
+	</http>
+	
+	<beans:bean id="corsSource" class="org.springframework.web.cors.UrlBasedCorsConfigurationSource">
+	</beans:bean>
+	
+</beans:beans>

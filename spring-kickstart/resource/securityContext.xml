@@ -14,7 +14,7 @@
 	<global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 
 <!-- 	<http pattern="/**" security="none"/> -->
-	<beans:bean id="myFilter" class="org.tahmasebi.service.XSSFilter"/>
+	<beans:bean id="myFilter" class="org.tahmasebi.xss.XSSFilter"/>
 	<http use-expressions="true">
 		<cors/>
 		<custom-filter after="BASIC_AUTH_FILTER" ref="myFilter" />
