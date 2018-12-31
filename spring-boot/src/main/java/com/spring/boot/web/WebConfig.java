@@ -1,5 +1,8 @@
 package com.spring.boot.web;
 
+import javax.servlet.MultipartConfigElement;
+
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.boot.web.servlet.support.ErrorPageFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,6 +53,14 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
 	@Bean
 	public ErrorPageFilter errorPageFilter() {
 	    return new ErrorPageFilter();
+	}
+
+	@Bean
+	public MultipartConfigElement multipartConfigElement() {
+		MultipartConfigFactory factory = new MultipartConfigFactory();
+		factory.setMaxFileSize("20MB");
+		factory.setMaxRequestSize("5000KB");
+		return factory.createMultipartConfig();
 	}
 //
 //	@Bean
