@@ -15,7 +15,9 @@
 	<!-- @AutoWire -->
 	<context:annotation-config></context:annotation-config>
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<mvc:annotation-driven/>
+	<mvc:annotation-driven>
+		<mvc:path-matching suffix-pattern="false" registered-suffixes-only="true" />
+	</mvc:annotation-driven>	
 	<mvc:interceptors>
 		<bean id="exceptionInterceptor" class="org.tahmasebi.services.WebRequestInterceptor" />
 	</mvc:interceptors>
