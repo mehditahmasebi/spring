@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -30,7 +31,13 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
 			.authorizeRequests()
 				.antMatchers("/public/**").permitAll()
 				.anyRequest().authenticated()
-			.and().csrf().disable();
+			.and().csrf().disable();		
+	}
+	
+	@Override
+	public void configurePathMatch(PathMatchConfigurer configurer) {
+		//to accept dot in REST string parameter
+		configurer.setUseSuffixPatternMatch(false);
 	}
 	
 	@Override
