@@ -1,0 +1,11 @@
+pom--> packaging=jar
+	mvnw spring-boot:run
+
+pom--> packaging=war
+	mvnw clean package -P tomcat
+	mvnw clean package -P wildfly
+	mvnw clean package
+	
+test is disable
+for skiping test add : -DskipTests
+skiptests embedded in pom.xml at maven-surefire-plugin
