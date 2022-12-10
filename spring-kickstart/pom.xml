@@ -11,7 +11,7 @@
 	<properties>
 	  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>  	
-		<springframework.version>4.3.16.RELEASE</springframework.version>
+		<springframework.version>6.0.0</springframework.version>
 		<springframework.security.version>4.2.6.RELEASE</springframework.security.version>
 		<resource1>${project.basedir}/src/resources</resource1>
 		<resource2>${project.basedir}/resource</resource2>
